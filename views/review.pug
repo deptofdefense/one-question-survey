@@ -2,6 +2,7 @@ extends layout.pug
 
 block content
   section.review
+    h2 Survey Details
     p.question.
       Question: #{data.question}
     ul
@@ -12,3 +13,9 @@ block content
         URL to share: <a href='#{data.shareUrl}'>#{data.shareUrl}</a>
       p.
         Admin URL (don't lose this!): <a href='#{data.adminUrl}'>#{data.adminUrl}</a>
+
+  section.responses
+    h2 Responses
+    each res in data.responses
+      aside.response
+        p From #{res.name} on DATE: #{res.answer}

@@ -41,7 +41,8 @@ router.get('/:code/admin/:admin', function (req, res) {
           shareUrl: `${domain}/survey/${data.code}`,
           adminUrl: `${domain}/survey/${data.code}/admin/${data.id.substr(6,5)}`,
           question: data.question,
-          answers: data.answers
+          answers: data.answers,
+          responses: data.responses
         }
       });
     }
