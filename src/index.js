@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug');
 
+app.use(express.static('src/public'));
+
 app.use('/', require('./routes/basic'));
 app.use('/survey', require('./routes/survey'));
 
