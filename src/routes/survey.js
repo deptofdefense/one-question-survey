@@ -4,21 +4,36 @@ const md5 = require('md5');
 const fs = require('fs-extra');
 const router = express.Router();
 
+const SALT = '67gu4evsdgh';
+
 router.post('/', async function (req, res) {
-  const hash = md5(JSON.stringify(req.body) + Date.now()).substr(0,5);
-  const data = Object.assign({ id: hash, createTime: Date.now() }, req.body);
+  const data = {
+    createTime: Date.now(),
+    responses: [],
+    question: req.body.question,
+    answers: req.body.answers
+  };
+  
+  data.id = md5(SALT + JSON.stringify(data) + Date.now());
+  data.code = data.id.substr(0,5);
   
   try {
-    await fs.outputFile(`data/${hash}.json`, JSON.stringify(data));
-    res.send(`Wrote new survey file (${hash}): ${JSON.stringify(data)}`);
+    await fs.outputFile(`data/${data.code}.json`, JSON.stringify(data));
+    res.send(`Wrote new survey file (${data.id}): ${JSON.stringify(data)}`);
   } catch (err) {
     console.error(err);
     res.send('oops<br><br>' + err.message);
   }
 });
 
-router.get('/:sid', function (req, res) {
-  res.send('Survey: ' + req.params.sid);
+router.get('/:code', function (req, res) {
+  try {
+    const data = require(`../../data/${req.params.code}.json`);
+    res.send('Found your survey! ' + JSON.stringify(data));
+  } catch(err) {
+    console.error(err);
+    res.send('Unable to find survey: ' + req.params.code);
+  }
 });
 
 module.exports = router;
