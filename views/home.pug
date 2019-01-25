@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+  form(method='post' action='/survey')
+    aside.question
+      label Question
+      input(type='text' name='question')
+    aside.answer
+      label Answer 1
+      input(type='text' name='answers[]')
+    aside.answer
+      label Answer 2
+      input(type='text' name='answers[]')
+    aside.answer
+      label Answer 3
+      input(type='text' name='answers[]')
+    aside.actions
+      input(type='submit')

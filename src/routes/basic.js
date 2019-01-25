@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.get('/', function (req, res) {
-  res.send('home');
+  res.render('home', { title: 'One Question Survey', message: 'This is a 1 question survey.' });
 });
 
 module.exports = router;
