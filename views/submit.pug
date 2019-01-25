@@ -4,7 +4,8 @@ block content
   form(method='post' action='/survey/submit/' + data.code)
     section.name
       label Your Name
-      input(type='text' name='respondant-name')
+      input(type='text' name='name')
+      input(type='hidden' name='client' value='1234567890')
     section.question
       p= data.question
     section.answers
