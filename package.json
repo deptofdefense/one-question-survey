@@ -1,0 +1,20 @@
+{
+  "name": "one-question-survey",
+  "version": "1.0.0",
+  "description": "A tiny app for delivering and reporting on simple one-question surveys",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deptofdefense/one-question-survey.git"
+  },
+  "author": "Jordan Kasper <jordan@dds.mil>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deptofdefense/one-question-survey/issues"
+  },
+  "homepage": "https://github.com/deptofdefense/one-question-survey#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
