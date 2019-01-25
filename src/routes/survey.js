@@ -29,7 +29,12 @@ router.post('/', async function (req, res) {
 router.get('/:code', function (req, res) {
   try {
     const data = require(`../../data/${req.params.code}.json`);
-    res.send('Found your survey! ' + JSON.stringify(data));
+    res.render('submit', { title: 'One Question Survey', data: {
+      code: data.code,
+      question: data.question,
+      answers: data.answers
+    } });
+    
   } catch(err) {
     console.error(err);
     res.send('Unable to find survey: ' + req.params.code);

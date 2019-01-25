@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+  form(method='post' action='/survey/submit/' + data.code)
+    section.name
+      label Your Name
+      input(type='text' name='respondant-name')
+    section.question
+      p= data.question
+    section.answers
+      each val in data.answers
+        aside.answer
+          label
+            input(type='radio' value='val' name='response')
+            =val
+    section.actions
+      input(type='submit')
