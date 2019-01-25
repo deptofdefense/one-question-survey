@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  section.review
+    p.question.
+      Question: #{data.question}
+    ul
+      each val in data.answers
+        li= val
+    aside.meta
+      p.
+        URL to share: <a href='#{data.shareUrl}'>#{data.shareUrl}</a>
+      p.
+        Admin URL (don't lose this!): <a href='#{data.adminUrl}'>#{data.adminUrl}</a>
