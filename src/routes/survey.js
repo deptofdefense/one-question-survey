@@ -7,6 +7,7 @@ const router = express.Router();
 const SALT = '67gu4evsdgh';
 const whitelist = /[^a-zA-Z0-9\-\. \,\(\)]/g;
 const port = (process.env.NODE_ENV === 'production') ? 80 : 3000;
+const clientIterator = 1;
 
 router.post('/', function (req, res) {
   const data = {
@@ -56,12 +57,15 @@ router.get('/:code/admin/:admin', function (req, res) {
 });
 
 router.get('/:code', function (req, res) {
+  const client = md5(req.connection.remoteAddress + clientIterator + Date.now());
+  
   try {
     const data = require(`../../data/${req.params.code}.json`);
     res.render('submit', { title: `Survey ${data.code}`, data: {
       code: data.code,
       question: data.question,
-      answers: data.answers
+      answers: data.answers,
+      client: client
     } });
     
   } catch(err) {

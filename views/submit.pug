@@ -3,14 +3,14 @@ extends layout.pug
 block content
   form(method='post' action='/survey/submit/' + data.code)
     section.name
-      label Your Name
+      label Welcome back 
       input(type='text' name='name')
-      input(type='hidden' name='client' value='1234567890')
+      input(type='hidden' name='client' value=data.client)
     section.question
       p= data.question
-    section.answers
+    ul.answers
       each val in data.answers
-        aside.answer
+        li.answer
           label
             input(type='radio' value='val' name='response')
             =val
